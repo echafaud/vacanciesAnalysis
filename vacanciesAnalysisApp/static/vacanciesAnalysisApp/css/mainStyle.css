@@ -1,0 +1,22 @@
+h1{
+  color: white;
+  margin: auto;
+}
+
+.main__heading{
+  max-width: 1900px;
+  min-height: 600px;
+  background-image: url("../img/mainImg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+}
+
+.main-heading__internal{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+}

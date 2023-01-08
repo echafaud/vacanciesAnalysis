@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'vacanciesAnalysisApp/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'vacanciesAnalysisApp/css/baseStyle.css' %}">
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  <span class="burger" onclick="openNav()">&#9776;</span>
+  <div class="nav">
+    <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Главная</a>
+    <a href="#">Востребованность</a>
+    <a href="#">География</a>
+    <a href="#">Навыки</a>
+    <a href="#">Последние вакансии</a>
+  </div>
+  <header class="header">
+    <div class="container header__container">
+      Egorov Inc.
+    </div>
+  </header>
+  <main>
+    <div class="container main__container">{% block mainContent %}{% endblock %}</div>
+  </main>
+  <footer class="footer">
+    <div class="container footer__container">
+      Куэйяр Егоров Андрей 210935
+    </div>
+  </footer>
+  <script src="{% static 'vacanciesAnalysisApp/js/script.js' %}"></script>
+</body>
+</html>
