@@ -1,0 +1,29 @@
+{% extends 'vacanciesAnalysisApp/base.html'%}
+{% load static %}
+<!-- {% block styles %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock %} -->
+
+{% block mainContent %}
+<h2>Востребованность</h2>
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+<table class="tableByYear">
+    <tr>
+      {% for heading in headings %}
+      <th>
+        {{heading.verbose_name}}
+      </th>
+      {% endfor %}
+    </tr>
+    {% for data in statisticsData %}
+    <tr>
+      <td>{{data.year}}</td>
+      <td>{{data.avgSalary}}</td>
+      <td>{{avgSalaryByVacancy}}</td>
+      <td>{{countVacancies}}</td>
+      <td>{{countVacancy}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

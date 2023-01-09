@@ -1,0 +1,48 @@
+{% extends 'vacanciesAnalysisApp/base.html'%}
+{% load static %}
+<!-- {% block styles %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock %} -->
+
+{% block mainContent %}
+<h2>География</h2>
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+
+<div class="cityTables">
+  <div class="table1">
+    <table class="tableByCity1">
+      <tr>
+        {%  for heading in salaryHeadings%}
+        <th>
+          {{heading.verbose_name}}
+        </th>
+        {% endfor %}
+      </tr>
+      {%  for data in salaryStatisticsData %}
+      <tr>
+        <td>{{data.area}}</td>
+        <td>{{data.avgSalary}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="table2">
+    <table class="tableByCity2">
+      <tr>
+        {%  for heading in ratioHeadings %}
+        <th>
+          {{heading.verbose_name}}
+        </th>
+        {% endfor %}
+      </tr>
+      {%  for data in ratioStatisticsData%}
+      <tr>
+        <td>{{data.area}}</td>
+        <td>{{data.ratio}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}
