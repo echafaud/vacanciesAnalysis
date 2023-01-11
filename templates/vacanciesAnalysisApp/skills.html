@@ -1,0 +1,18 @@
+{% extends 'vacanciesAnalysisApp/base.html'%}
+
+{% block styles %}
+<link rel="stylesheet" href="">
+{% endblock %}
+
+{% block mainContent %}
+{% for year in years %}
+{{year}}
+<ol>
+  {% for skill in skillsStatistics %}
+      {% if skill.year == year %}
+        <li>{{skill.skill}}</li>
+      {% endif %}
+  {% endfor %}
+</ol>
+{% endfor %}
+{% endblock %}

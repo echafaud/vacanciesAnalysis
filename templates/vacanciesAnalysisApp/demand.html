@@ -6,8 +6,8 @@
 
 {% block mainContent %}
 <h2>Востребованность</h2>
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/Уровень зарплат по годам.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/Количество вакансий по годам.png' %}" alt="">
 <table class="tableByYear">
     <tr>
       {% for heading in headings %}
@@ -18,11 +18,11 @@
     </tr>
     {% for data in statisticsData %}
     <tr>
-      <td>{{data.year}}</td>
+      <td>{{data.publishedYear}}</td>
       <td>{{data.avgSalary}}</td>
-      <td>{{avgSalaryByVacancy}}</td>
-      <td>{{countVacancies}}</td>
-      <td>{{countVacancy}}</td>
+      <td>{{data.avgSalaryByVacancy}}</td>
+      <td>{{data.countVacancies}}</td>
+      <td>{{data.countVacancy}}</td>
     </tr>
     {% endfor %}
 </table>

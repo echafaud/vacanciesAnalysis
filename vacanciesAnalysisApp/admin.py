@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from vacanciesAnalysisApp.models import StatisticsByYear, SalaryStaticsByArea, RatioStaticsByArea
+from vacanciesAnalysisApp import models
 
 # Register your models here.
 
-admin.site.register([StatisticsByYear, SalaryStaticsByArea, RatioStaticsByArea])
+admin.site.register([models.StatisticsByYear,
+                     models.SalaryStatisticsByArea,
+                     models.RatioStatisticsByArea,
+                     models.SkillsStatisticsByYear])

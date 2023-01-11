@@ -4,10 +4,12 @@ from django.shortcuts import render
 pages = {
     'demand': ('demand.html', {'headings': models.StatisticsByYear._meta.get_fields()[1:],
                                'statisticsData': models.StatisticsByYear.objects.all()}),
-    'geography': ('geography.html', {'salaryHeadings': models.SalaryStaticsByArea._meta.get_fields()[1:],
-                                     'ratioHeadings': models.RatioStaticsByArea._meta.get_fields()[1:],
-                                     'salaryStatisticsData': models.SalaryStaticsByArea.objects.all(),
-                                     'ratioStatisticsData': models.SalaryStaticsByArea.objects.all()}),
+    'geography': ('geography.html', {'salaryHeadings': models.SalaryStatisticsByArea._meta.get_fields()[1:],
+                                     'ratioHeadings': models.RatioStatisticsByArea._meta.get_fields()[1:],
+                                     'salaryStatisticsData': models.SalaryStatisticsByArea.objects.all(),
+                                     'ratioStatisticsData': models.RatioStatisticsByArea.objects.all()}),
+    'skills': ('skills.html', {'years': sorted(set(models.SkillsStatisticsByYear.objects.values_list('year', flat=True))),
+                               'skillsStatistics': models.SkillsStatisticsByYear.objects.all()})
 }
 
 

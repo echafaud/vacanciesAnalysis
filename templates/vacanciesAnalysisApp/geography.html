@@ -6,8 +6,8 @@
 
 {% block mainContent %}
 <h2>География</h2>
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/testImg.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/Уровень зарплат по городам.png' %}" alt="">
+<img class="img" src="{% static 'vacanciesAnalysisApp/img/Доля вакансий по городам.png' %}" alt="">
 
 <div class="cityTables">
   <div class="table1">
@@ -21,8 +21,8 @@
       </tr>
       {%  for data in salaryStatisticsData %}
       <tr>
-        <td>{{data.area}}</td>
-        <td>{{data.avgSalary}}</td>
+        <td>{{data.salaryAreaName}}</td>
+        <td>{{data.avgSalaryByArea}}</td>
       </tr>
       {% endfor %}
     </table>
@@ -38,8 +38,8 @@
       </tr>
       {%  for data in ratioStatisticsData%}
       <tr>
-        <td>{{data.area}}</td>
-        <td>{{data.ratio}}</td>
+        <td>{{data.countAreaName}}</td>
+        <td>{{data.ratioByArea}}</td>
       </tr>
       {% endfor %}
     </table>
