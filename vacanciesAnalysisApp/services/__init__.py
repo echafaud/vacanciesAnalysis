@@ -1,3 +1,5 @@
+from vacanciesAnalysisApp.services import responses
+
 def InitializeDB():
     from vacanciesParser import VacanciesParser
     fileName = input("Введите название файла: ")
