@@ -35,7 +35,27 @@ class DistributorVacancies:
     def GetAvgSalary(self, salaryFrom, salaryTo):
         salaryFrom = float(salaryFrom or 0)
         salaryTo = float(salaryTo or 0)
-        return (salaryFrom + salaryTo) / 2
+        if salaryTo and salaryFrom:
+            return (salaryFrom + salaryTo) / 2
+        return salaryFrom + salaryTo
+
+    def GetSalary(self, salary):
+        if not salary:
+            return '-'
+        avgSalary = self.GetAvgSalary(salary['from'], salary['to'])
+        salary = f'{avgSalary} {salary["currency"]}'
+        return salary
+
+    def GetPuplishedTime(self, publishedTime):
+        return f'{publishedTime[:10]} {publishedTime[11:19]}'
+
+    def GetSkills(self, skills):
+        if not skills:
+            return '-'
+        skills = ''
+        for skill in skills:
+            skills += skill["name"]
+        return skills
 
     def GetVacanciesByPage(self, url):
         vacanciesByPage = []
@@ -44,16 +64,13 @@ class DistributorVacancies:
         for vacancy in pageJson['items']:
             id = vacancy['id']
             vacancy = self.GetResponse(f'https://api.hh.ru/vacancies/{id}').json()
-            salaryExist = vacancy['salary']
             tempVacancy = {'name': vacancy['name'],
                            'description': self.CleanRow(vacancy['description'])[:100],
-                           'skills': vacancy['key_skills'],
+                           'skills': self.GetSkills(vacancy['key_skills']),
                            'employer': vacancy['employer']['name'],
-                           'salary': self.GetAvgSalary(vacancy['salary']['from'],
-                                                       vacancy['salary']['to']) if salaryExist else None,
-                           'salary_currency': vacancy['salary']['currency'] if salaryExist else None,
+                           'salary': self.GetSalary(vacancy['salary']),
                            'area_name': vacancy['area']['name'],
-                           'published_at': vacancy['published_at']}
+                           'published_at': self.GetPuplishedTime(vacancy['published_at'])}
             vacanciesByPage.append(tempVacancy)
         return vacanciesByPage
 

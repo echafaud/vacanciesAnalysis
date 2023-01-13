@@ -12,9 +12,33 @@ import pandas as pd
 from vacanciesAnalysisApp import models
 from .distributorVacancies import DistributorVacancies
 
+
 def GetPage(pageName):
     page, content = pages.get(pageName, None)
-    return page, content
+    return page, content()
+
+
+def GetDemandContent():
+    return {'headings': models.StatisticsByYear._meta.get_fields()[1:],
+            'statisticsData': models.StatisticsByYear.objects.all()}
+
+
+def GetGeographyContent():
+    return {'salaryHeadings': models.SalaryStatisticsByArea._meta.get_fields()[1:],
+            'ratioHeadings': models.RatioStatisticsByArea._meta.get_fields()[1:],
+            'salaryStatisticsData': models.SalaryStatisticsByArea.objects.all(),
+            'ratioStatisticsData': models.RatioStatisticsByArea.objects.all()}
+
+
+def GetSkillsContent():
+    return {'years': sorted(set(models.SkillsStatisticsByYear.objects.values_list('year', flat=True))),
+            'skillsStatistics': models.SkillsStatisticsByYear.objects.all()}
+
+
+def GetRecentContent():
+    return {'vacancies': DistributorVacancies().GetRecentVacancies(GetBDay()),
+            'headings': ['Название вакансии', 'Описание вакансии', 'Навыки', 'Компания', 'Оклад',
+                         'Название региона', 'Дату публикации вакансии']}
 
 
 def GetBDay():
@@ -22,17 +46,8 @@ def GetBDay():
 
 
 pages = {
-    'demand': ('demand.html', {'headings': models.StatisticsByYear._meta.get_fields()[1:],
-                               'statisticsData': models.StatisticsByYear.objects.all()}),
-    'geography': ('geography.html', {'salaryHeadings': models.SalaryStatisticsByArea._meta.get_fields()[1:],
-                                     'ratioHeadings': models.RatioStatisticsByArea._meta.get_fields()[1:],
-                                     'salaryStatisticsData': models.SalaryStatisticsByArea.objects.all(),
-                                     'ratioStatisticsData': models.RatioStatisticsByArea.objects.all()}),
-    'skills': ('skills.html',
-               {'years': sorted(set(models.SkillsStatisticsByYear.objects.values_list('year', flat=True))),
-                'skillsStatistics': models.SkillsStatisticsByYear.objects.all()}),
-    'recent': ('recent.html',
-               {'vacancies': DistributorVacancies().GetRecentVacancies(GetBDay()),
-                'headings': ['Название вакансии', 'Описание вакансии', 'Навыки', 'Компания', 'Оклад',
-                          'Название региона', 'Дату публикации вакансии']})
+    'demand': ('demand.html', GetDemandContent),
+    'geography': ('geography.html', GetGeographyContent),
+    'skills': ('skills.html', GetSkillsContent),
+    'recent': ('recent.html', GetRecentContent)
 }
