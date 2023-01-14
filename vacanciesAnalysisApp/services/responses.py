@@ -43,7 +43,7 @@ def GetRecentContent():
 
 
 def GetBDay():
-    return (pd.Timestamp.now().replace(day=1) + pd.offsets.BDay()).strftime("%Y-%m-%d")
+    return (pd.Timestamp.now().replace(day=1) - pd.offsets.BMonthEnd()).strftime("%Y-%m-%d")
 
 
 pages = {

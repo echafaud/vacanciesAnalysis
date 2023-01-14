@@ -9,7 +9,7 @@ class StatisticsByYear(models.Model):
     countVacancy = models.IntegerField('Количество вакансий специалистов по информационной безопасности')
 
     def __str__(self):
-        return self.publishedYear
+        return f'{self.publishedYear}'
 
     class Meta:
         verbose_name = 'Статистика по году'
@@ -47,7 +47,7 @@ class SkillsStatisticsByYear(models.Model):
     ratio = models.FloatField('Доля')
 
     def __str__(self):
-        return self.year
+        return f'{self.year}-{self.skill}'
 
     class Meta:
         verbose_name = 'Доля навыка в году'
