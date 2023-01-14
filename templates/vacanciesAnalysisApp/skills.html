@@ -1,18 +1,38 @@
-{% extends 'vacanciesAnalysisApp/base.html'%}
-
+{% extends 'vacanciesAnalysisApp/statistics.html'%}
+{% load static %}
 {% block styles %}
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="{% static 'vacanciesAnalysisApp/css/statisticsStyle.css' %}">
+<link rel="stylesheet" href="{% static 'vacanciesAnalysisApp/css/accordionStyles.css' %}">
 {% endblock %}
+{% block pageName %}Топ востребованных скиллов у специалистов по информационной безопасности по годам{% endblock %}
 
-{% block mainContent %}
+{% block tables %}
+<div class="brightnessItem">
 {% for year in years %}
-{{year}}
-<ol>
-  {% for skill in skillsStatistics %}
-      {% if skill.year == year %}
-        <li>{{skill.skill}}</li>
-      {% endif %}
-  {% endfor %}
-</ol>
+<button class="accordion">{{year}}</button>
+
+<div class="panel">
+  <div class="table">
+    <table class="tableByYear">
+      <tr>
+        {%  for heading in skillsHeadings %}
+        <th>
+          {{heading.verbose_name}}
+        </th>
+        {% endfor %}
+      </tr>
+      {%  for data in skillsStatisticsData %}
+        {% if data.year == year %}
+          <tr>
+            <td class="skill">{{data.skill}}</td>
+            <td>{{data.ratio}}%</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
 {% endfor %}
+</div>
 {% endblock %}
+{% block scripts %}<script src="{% static 'vacanciesAnalysisApp/js/accordion.js' %}"></script>{% endblock %}

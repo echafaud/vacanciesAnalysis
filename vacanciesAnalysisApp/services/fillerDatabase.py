@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     avgCityCount = convertedVacanciesDB.GetResponseDF(f"""SELECT area_name as countAreaName, 
             ROUND(CAST(COUNT(name) as REAL) / (SELECT COUNT(*) 
-            FROM convertedVacancies), 4) as ratioByArea 
+            FROM convertedVacancies) * 100, 2) as ratioByArea 
             FROM convertedVacancies 
             GROUP BY countAreaName 
             HAVING (CAST(COUNT(name) as REAL) / (SELECT COUNT(*) 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
                     OR (LOWER(vacancy) LIKE '%cyber security%')) and year == '{year}'
             group by skill),
             Sum as (select sum(count) as total from Top)
-            select year, skill, count, round(CAST(count as REAL) / total,4) * 100 as ratio from Top,Sum
+            select year, skill, count, ROUND((CAST(count as REAL) / total) * 100, 2) as ratio from Top,Sum
             order by count
             desc limit 10""")])
     convertedVacanciesDB.CloseDB()

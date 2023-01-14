@@ -32,7 +32,8 @@ def GetGeographyContent():
 
 def GetSkillsContent():
     return {'years': sorted(set(models.SkillsStatisticsByYear.objects.values_list('year', flat=True))),
-            'skillsStatistics': models.SkillsStatisticsByYear.objects.all()}
+            'skillsHeadings': models.SkillsStatisticsByYear._meta.get_fields()[2::2],
+            'skillsStatisticsData': models.SkillsStatisticsByYear.objects.all()}
 
 
 def GetRecentContent():

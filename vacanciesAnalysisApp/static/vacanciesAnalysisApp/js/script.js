@@ -3,6 +3,7 @@ function openNav() {
   document.querySelector(".main__container").style.marginLeft = "300px";
   document.body.style.backgroundColor = "rgba(0,0,0,0.5)";
   document.querySelector(".imgs").classList.toggle("brightnessOn")
+  document.querySelector(".brightnessItem").classList.toggle("brightnessOn")
 
 }
 
@@ -11,5 +12,6 @@ function closeNav() {
   document.querySelector(".main__container").style.marginLeft = "0px";
   document.body.style.backgroundColor = "white";
   document.querySelector(".imgs").classList.remove("brightnessOn")
+  document.querySelector(".brightnessItem").classList.remove("brightnessOn")
 
 }
