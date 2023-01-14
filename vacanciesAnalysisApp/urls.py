@@ -2,6 +2,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.getIndexPage),
-    path('<page>', views.getPage)
+    path('', views.getIndexPage, name = 'indexPage'),
+    path('<page>', views.getPage, name = 'statisticPage')
 ]

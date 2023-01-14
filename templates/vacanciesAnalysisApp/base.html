@@ -11,18 +11,18 @@
   {% block styles %}{% endblock %}
 </head>
 <body>
-  <span class="burger" onclick="openNav()">&#9776;</span>
-  <div class="nav">
-    <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Главная</a>
-    <a href="#">Востребованность</a>
-    <a href="#">География</a>
-    <a href="#">Навыки</a>
-    <a href="#">Последние вакансии</a>
-  </div>
   <header class="header">
     <div class="container header__container">
-      Egorov Inc.
+    <span class="burger" onclick="openNav()">&#9776;</span>
+    <div class="nav">
+      <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="{% url 'indexPage' %}">Главная</a>
+      <a href="{% url 'statisticPage' page='demand' %}">Востребованность</a>
+      <a href="{% url 'statisticPage' page='geography' %}">География</a>
+      <a href="{% url 'statisticPage' page='skills' %}">Навыки</a>
+      <a href="{% url 'statisticPage' page='recent' %}">Последние вакансии</a>
+    </div>
+      <div class="name">Egorov Inc.</div>
     </div>
   </header>
   <main>
