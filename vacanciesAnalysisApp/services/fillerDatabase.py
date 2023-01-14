@@ -74,21 +74,21 @@ if __name__ == '__main__':
     years = convertedVacanciesDB.GetResponseDF(f"""SELECT DISTINCT year FROM Skills""")['year'].tolist()
 
     skillsStatistics = pd.DataFrame()
-    for year in years:
-        skillsStatistics = pd.concat([skillsStatistics, convertedVacanciesDB.GetResponseDF(f"""with Top as (SELECT year, skill, COUNT(skill) as count
-            FROM Skills
-            WHERE ((LOWER(vacancy) LIKE '%специалист по информационной безопасности%')
-                    OR (LOWER(vacancy) LIKE '%безопасность%')
-                    OR (LOWER(vacancy) LIKE '%защита%')
-                    OR (LOWER(vacancy) LIKE '%information security specialist%')
-                    OR (LOWER(vacancy) LIKE '%information security%')
-                    OR (LOWER(vacancy) LIKE '%фахівець служби безпеки%')
-                    OR (LOWER(vacancy) LIKE '%cyber security%')) and year == '{year}'
-            group by skill),
-            Sum as (select sum(count) as total from Top)
-            select year, skill, count, ROUND((CAST(count as REAL) / total) * 100, 2) as ratio from Top,Sum
-            order by count
-            desc limit 10""")])
+    # for year in years:
+    #     skillsStatistics = pd.concat([skillsStatistics, convertedVacanciesDB.GetResponseDF(f"""with Top as (SELECT year, skill, COUNT(skill) as count
+    #         FROM Skills
+    #         WHERE ((LOWER(vacancy) LIKE '%специалист по информационной безопасности%')
+    #                 OR (LOWER(vacancy) LIKE '%безопасность%')
+    #                 OR (LOWER(vacancy) LIKE '%защита%')
+    #                 OR (LOWER(vacancy) LIKE '%information security specialist%')
+    #                 OR (LOWER(vacancy) LIKE '%information security%')
+    #                 OR (LOWER(vacancy) LIKE '%фахівець служби безпеки%')
+    #                 OR (LOWER(vacancy) LIKE '%cyber security%')) and year == '{year}'
+    #         group by skill),
+    #         Sum as (select sum(count) as total from Top)
+    #         select year, skill, count, ROUND((CAST(count as REAL) / total) * 100, 2) as ratio from Top,Sum
+    #         order by count
+    #         desc limit 10""")])
     convertedVacanciesDB.CloseDB()
 
     report = Report("Специалист по информационной безопасности")
@@ -96,10 +96,10 @@ if __name__ == '__main__':
     statisticsByYear = pd.merge(pd.merge(avgSalary, avgSalaryByVacancy, on='publishedYear'),
                                 pd.merge(countVacancies, countVacancy, on='publishedYear'),
                                 on='publishedYear')
-    # report.GenerateImages(statisticsByYear.to_dict(), avgCitySalary.set_index('salaryAreaName').to_dict(),
-    #                       avgCityCount.set_index('countAreaName').to_dict())
+    report.GenerateImages(statisticsByYear.to_dict(), avgCitySalary.set_index('salaryAreaName').to_dict(),
+                          avgCityCount.set_index('countAreaName').to_dict())
 
-    InsertData(models.StatisticsByYear, statisticsByYear.reset_index())
-    InsertData(models.SalaryStatisticsByArea, avgCitySalary)
-    InsertData(models.RatioStatisticsByArea, avgCityCount)
-    InsertData(models.SkillsStatisticsByYear, skillsStatistics)
+    # InsertData(models.StatisticsByYear, statisticsByYear.reset_index())
+    # InsertData(models.SalaryStatisticsByArea, avgCitySalary)
+    # InsertData(models.RatioStatisticsByArea, avgCityCount)
+    # InsertData(models.SkillsStatisticsByYear, skillsStatistics)

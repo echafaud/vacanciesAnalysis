@@ -107,26 +107,26 @@ class Report:
                                         dataByYear['avgSalaryByVacancy'],
                                         "средняя з/п",
                                         f'з/п {self.vacancyName}', 90)
-        figure.savefig(f'{ax.get_title()}')
+        figure.savefig(f'{ax.get_title()}', bbox_inches='tight')
         figure.clear()
         ax = figure.add_subplot()
         ax = self.__CreateVerticalBars(ax, f"Количество вакансий по годам", dataByYear['countVacancies'],
                                         dataByYear['countVacancy'],
                                         "Количество вакансий", f'Количество вакансий {self.vacancyName}', 90)
-        figure.savefig(f'{ax.get_title()}')
+        figure.savefig(f'{ax.get_title()}', bbox_inches='tight')
         figure.clear()
         ax = figure.add_subplot()
         ax = self.__CreateHorizontalBar(ax, "Уровень зарплат по городам", salaryDataByArea['avgSalaryByArea'])
-        figure.savefig(f'{ax.get_title()}')
+        figure.savefig(f'{ax.get_title()}', bbox_inches='tight')
         figure.clear()
         ax = figure.add_subplot()
         plt.rc('font', size=6)
         tempDict = {k: v for k, v in countDataByArea['ratioByArea'].items()}
-        tempDict["Другие"] = 1 - sum(tempDict.values())
+        tempDict["Другие"] = 100 - sum(tempDict.values())
         tempDict = dict(sorted(tempDict.items(), key=lambda x: x[1]))
         ax = self.__CreatePie(ax, "Доля вакансий по городам", tempDict)
         plt.tight_layout()
-        figure.savefig(f'{ax.get_title()}')
+        figure.savefig(f'{ax.get_title()}', bbox_inches='tight')
 
     #     plt.rc('font', size=8)
     #     figure = plt.figure()
