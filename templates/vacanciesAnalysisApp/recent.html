@@ -1,29 +1,31 @@
-{% extends 'vacanciesAnalysisApp/base.html'%}
-{% load static %}
-<!-- {% block styles %}
-<link rel="stylesheet" href="{% static '' %}">
-{% endblock %} -->
+{% extends 'vacanciesAnalysisApp/statistics.html'%}
 
-{% block mainContent %}
-<h2>Последние вакансии</h2>
-<table class="tableByYear">
-    <tr>
-      {% for heading in headings %}
-      <th>
-        {{heading}}
-      </th>
+{% block pageName %}Последние вакансии{% endblock %}
+
+
+{% block tables %}
+  <div class="tables">
+  <div class="table">
+    <table class="tableByYear">
+      <tr>
+        {% for heading in headings %}
+        <th>
+          {{heading}}
+        </th>
+        {% endfor %}
+      </tr>
+      {% for vacancy in vacancies %}
+      <tr>
+        <td>{{vacancy.name}}</td>
+        <td>{{vacancy.description}}</td>
+        <td>{{vacancy.skills}}</td>
+        <td>{{vacancy.employer}}</td>
+        <td>{{vacancy.salary}}</td>
+        <td>{{vacancy.area_name}}</td>
+        <td>{{vacancy.published_at}}</td>
+      </tr>
       {% endfor %}
-    </tr>
-    {% for vacancy in vacancies %}
-    <tr>
-      <td>{{vacancy.name}}</td>
-      <td>{{vacancy.description}}</td>
-      <td>{{vacancy.skills}}</td>
-      <td>{{vacancy.employer}}</td>
-      <td>{{vacancy.salary}}</td>
-      <td>{{vacancy.area_name}}</td>
-      <td>{{vacancy.published_at}}</td>
-    </tr>
-    {% endfor %}
-</table>
+      </table>
+  </div>
+  </div>
 {% endblock %}

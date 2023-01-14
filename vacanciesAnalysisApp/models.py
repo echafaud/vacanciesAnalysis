@@ -6,7 +6,7 @@ class StatisticsByYear(models.Model):
     avgSalary = models.IntegerField('Средняя з/п всех вакансий')
     avgSalaryByVacancy = models.IntegerField('Средняя з/п специалиста по информационной безопасности')
     countVacancies = models.IntegerField('Количество всех вакансий')
-    countVacancy = models.IntegerField('Количество вакансий специалиста по информационной безопасности')
+    countVacancy = models.IntegerField('Количество вакансий специалистов по информационной безопасности')
 
     def __str__(self):
         return self.publishedYear
@@ -17,27 +17,27 @@ class StatisticsByYear(models.Model):
 
 
 class SalaryStatisticsByArea(models.Model):
-    salaryAreaName = models.CharField('Расположение', max_length=255)
+    salaryAreaName = models.CharField('Регион', max_length=255)
     avgSalaryByArea = models.IntegerField('Уровень зарплат')
 
     def __str__(self):
         return self.salaryAreaName
 
     class Meta:
-        verbose_name = 'Уровень зарплат в городе'
-        verbose_name_plural = 'Уровень зарплат по городам'
+        verbose_name = 'Уровень зарплат в регионе'
+        verbose_name_plural = 'Уровень зарплат по регионам'
 
 
 class RatioStatisticsByArea(models.Model):
-    countAreaName = models.CharField('Расположение', max_length=255)
+    countAreaName = models.CharField('Регион', max_length=255)
     ratioByArea = models.FloatField('Доля вакансий')
 
     def __str__(self):
         return self.countAreaName
 
     class Meta:
-        verbose_name = 'Доля вакансий в городе'
-        verbose_name_plural = 'Доля вакансий по городам'
+        verbose_name = 'Доля вакансий в регионе'
+        verbose_name_plural = 'Доля вакансий по регионам'
 
 
 class SkillsStatisticsByYear(models.Model):

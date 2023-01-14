@@ -1,0 +1,17 @@
+{% extends 'vacanciesAnalysisApp/base.html'%}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'vacanciesAnalysisApp/css/statisticsStyle.css' %}">
+{% endblock %}
+
+{% block mainContent %}
+  <section class="statistics-info">
+    <h2>{% block pageName %}{% endblock %}</h2>
+    <div class="imgs">
+      {% block imgs %}
+      {% endblock %}
+    </div>
+    {% block tables %}
+    {% endblock %}
+  </section>
+{% endblock %}

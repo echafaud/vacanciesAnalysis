@@ -24,6 +24,11 @@ body {
   max-width: 1900px;
   padding: 16px;
   transition: margin-left .5s;
+
+}
+
+.main__container{
+  padding-top: 0;
 }
 
 .burger{
@@ -70,3 +75,6 @@ body {
   justify-content: space-between;
 }
 
+.footer__container{
+  text-align: center;
+}

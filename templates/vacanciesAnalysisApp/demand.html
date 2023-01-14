@@ -1,29 +1,30 @@
-{% extends 'vacanciesAnalysisApp/base.html'%}
+{% extends 'vacanciesAnalysisApp/statistics.html'%}
 {% load static %}
-<!-- {% block styles %}
-<link rel="stylesheet" href="{% static '' %}">
-{% endblock %} -->
-
-{% block mainContent %}
-<h2>Востребованность</h2>
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/Уровень зарплат по годам.png' %}" alt="">
-<img class="img" src="{% static 'vacanciesAnalysisApp/img/Количество вакансий по годам.png' %}" alt="">
-<table class="tableByYear">
-    <tr>
-      {% for heading in headings %}
-      <th>
-        {{heading.verbose_name}}
-      </th>
-      {% endfor %}
-    </tr>
-    {% for data in statisticsData %}
-    <tr>
-      <td>{{data.publishedYear}}</td>
-      <td>{{data.avgSalary}}</td>
-      <td>{{data.avgSalaryByVacancy}}</td>
-      <td>{{data.countVacancies}}</td>
-      <td>{{data.countVacancy}}</td>
-    </tr>
-    {% endfor %}
-</table>
+{% block pageName %}Востребованность{% endblock %}
+{% block imgs %}
+      <img class="img" src="{% static 'vacanciesAnalysisApp/img/Уровень зарплат по годам.png' %}" alt="">
+      <img class="img" src="{% static 'vacanciesAnalysisApp/img/Количество вакансий по годам.png' %}" alt="">
 {% endblock %}
+{% block tables %}
+    <div class="table">
+    <table class="tableByYear">
+        <tr>
+        {% for heading in headings %}
+        <th>
+            {{heading.verbose_name}}
+        </th>
+        {% endfor %}
+        </tr>
+        {% for data in statisticsData %}
+        <tr>
+        <td>{{data.publishedYear}}</td>
+        <td>{{data.avgSalary}}</td>
+        <td>{{data.avgSalaryByVacancy}}</td>
+        <td>{{data.countVacancies}}</td>
+        <td>{{data.countVacancy}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
+

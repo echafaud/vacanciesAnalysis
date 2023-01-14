@@ -52,10 +52,10 @@ class DistributorVacancies:
     def GetSkills(self, skills):
         if not skills:
             return '-'
-        skills = ''
+        resultSkills = ''
         for skill in skills:
-            skills += skill["name"]
-        return skills
+            resultSkills += skill["name"] + ', '
+        return resultSkills
 
     def GetVacanciesByPage(self, url):
         vacanciesByPage = []

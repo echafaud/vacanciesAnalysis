@@ -1,0 +1,34 @@
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+  th, td{
+    padding: 7px;
+}
+.tables{
+  display: flex;
+    justify-content: center;
+}
+.table:not(:last-child){
+    margin-right: 10px;
+}
+.main__container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.statistics-info{
+  text-align: center;
+}
+.img{
+    height: 480px;
+    width: 640px;
+}
+
+.imgs{
+  display: flex;
+  justify-content: center;
+}

@@ -1,17 +1,15 @@
-{% extends 'vacanciesAnalysisApp/base.html'%}
+{% extends 'vacanciesAnalysisApp/statistics.html'%}
 {% load static %}
-<!-- {% block styles %}
-<link rel="stylesheet" href="{% static '' %}">
-{% endblock %} -->
 
-{% block mainContent %}
-<h2>География</h2>
+{% block pageName %}География{% endblock %}
+{% block imgs %}
 <img class="img" src="{% static 'vacanciesAnalysisApp/img/Уровень зарплат по городам.png' %}" alt="">
 <img class="img" src="{% static 'vacanciesAnalysisApp/img/Доля вакансий по городам.png' %}" alt="">
-
-<div class="cityTables">
-  <div class="table1">
-    <table class="tableByCity1">
+{% endblock %}
+{% block tables %}
+<div class="tables">
+  <div class="table">
+    <table class="tableByCity">
       <tr>
         {%  for heading in salaryHeadings%}
         <th>
@@ -27,8 +25,8 @@
       {% endfor %}
     </table>
   </div>
-  <div class="table2">
-    <table class="tableByCity2">
+  <div class="table">
+    <table class="tableByCity">
       <tr>
         {%  for heading in ratioHeadings %}
         <th>
