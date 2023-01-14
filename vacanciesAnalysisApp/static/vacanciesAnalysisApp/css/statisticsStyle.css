@@ -28,6 +28,10 @@
     width: 640px;
 }
 
+.brightnessOn{
+  filter: brightness(50%);
+}
+
 .imgs{
   display: flex;
   justify-content: center;
